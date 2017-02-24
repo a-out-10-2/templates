@@ -36,7 +36,7 @@ library_version = MPI.Get_library_version()
 version = MPI.Get_version()
 
 if rank == 0:
-    sys.stdout.write("[Rank 0] I'm special.\n")
+    sys.stdout.write("[Rank 0] Hello, I'm special.\n")
     sys.stdout.write("\tsize = {}\n".format(size))
     sys.stdout.write("\tname = {}\n".format(name))
     sys.stdout.write("\tlibrary_version = {}\n".format(library_version))
