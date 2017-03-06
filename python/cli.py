@@ -23,17 +23,20 @@
 
 import argparse
 import logging
+import sys
 
 __version__ = 0.0
 
 # Exportable API
-__all__ = []
+__all__ = ['main', 'parse_args']
 
 
-def __parse_args():
-    """Parse the arguments received from STDIN.
-
-    :return params:
+def parse_args(*args):
+    """
+    Parse the arguments received from STDIN.
+    :param args: The string arguments to be parsed.
+    :return params: The arguments parsed into parameters.
+    :rtype: argparse.Namespace
     """
     # Constructing argument parser
     parser = argparse.ArgumentParser(description="A <بعض المرافق>.")
@@ -47,12 +50,16 @@ def __parse_args():
     parser.add_argument("--version", action='version', version='cli %s' % __version__)
 
     # Process and return parameters
-    return parser.parse_args()
+    return parser.parse_args(args)
 
 
-if __name__ == '__main__':
-
-    params = __parse_args()
+def main(params):
+    """
+    Execute the main method of the program.
+    :param params: The parameters that will dictate the functionality of the program.
+    :return: The final return code of the program.
+    :rtype: int
+    """
 
     # Set up logging
     if params.verbose == 1:
@@ -61,5 +68,8 @@ if __name__ == '__main__':
         logging.basicConfig(format='%(message)s', level=logging.DEBUG)
 
     logging.debug(params)
-
     logging.info("مرحبا بالعالم.")
+
+
+if __name__ == '__main__':
+    sys.exit(main(parse_args()))
