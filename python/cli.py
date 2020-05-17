@@ -31,7 +31,7 @@ __version__ = 0.0
 __all__ = ['main', 'parse_args']
 
 
-def parse_args(*args):
+def parse_args(*args, **kwargs):
     """
     Parse the arguments received from STDIN.
     :param args: The string arguments to be parsed.
@@ -50,7 +50,7 @@ def parse_args(*args):
     parser.add_argument("--version", action='version', version='cli %s' % __version__)
 
     # Process and return parameters
-    return parser.parse_args(args)
+    return parser.parse_args(*args, **kwargs)
 
 
 def main(params):
